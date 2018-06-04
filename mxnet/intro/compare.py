@@ -23,23 +23,21 @@ def prepareNDArray(filename):
 	img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 	img = cv2.resize(img, (224, 224,))
 	img = np.swapaxes(img, 0, 2)
-    	img = np.swapaxes(img, 1, 2)
-    	img = img[np.newaxis, :]
+	img = np.swapaxes(img, 1, 2)
+	img = img[np.newaxis, :]
 	return mx.nd.array(img) 
 
 def predict(filename, model, categories, n):
 	array = prepareNDArray(filename)
 	Batch = namedtuple('Batch', ['data'])
-
 	model.forward(Batch([array]))
     	prob = model.get_outputs()[0].asnumpy()
-
 	prob = np.squeeze(prob)
-    	sortedprobindex = np.argsort(prob)[::-1]
+	sortedprobindex = np.argsort(prob)[::-1]
 	topn = []
-    	for i in sortedprobindex[0:n]:
+	for i in sortedprobindex[0:n]:
         	topn.append((prob[i], categories[i]))
-    	return topn
+	return topn
 
 def init(modelname): 
 	model = loadModel(modelname)
@@ -52,10 +50,21 @@ inceptionv3,c = init("Inception-BN")
 
 filename = sys.argv[1] 
 
+<<<<<<< HEAD
 print ("*** VGG16")
 print predict(filename,vgg16,c,5)
 print ("*** ResNet-152")
 print predict(filename,resnet152,c,5)
 print ("*** Inception v3")
 print predict(filename,inceptionv3,c,5)
+=======
+iter = 1
+
+print ("*** VGG16")
+print (predict(filename,vgg16,c,5, iter))
+print ("*** ResNet-152")
+print (predict(filename,resnet152,c,5, iter))
+print ("*** Inception v3")
+print (predict(filename,inceptionv3,c,5, iter))
+>>>>>>> 2b745f32976a83d8c5da2f014e2e5a0fd5a13fdc
 
