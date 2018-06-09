@@ -6,13 +6,12 @@ from sklearn.metrics import mean_squared_error, r2_score
 X_train = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 Y_train = np.array([1, 2.5, 2, 3, 5, 4, 5.5, 7, 6, 8])
 
-# Transform vectors into 10-line, 1-column matrices
+# Transform samples into 10-line, 1-column matrix
 X_train = X_train.reshape((-1, 1))
-Y_train = Y_train.reshape((-1, 1))
 
 # Create linear regression object
 #regr = linear_model.LinearRegression()
-regr = linear_model.SGDRegressor()
+regr = linear_model.SGDRegressor(max_iter=1000, tol=1e-3)
 
 # Train the model
 regr.fit(X_train, Y_train)
