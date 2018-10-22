@@ -12,6 +12,9 @@ print(mnist_test_images.shape)
 mnist_images = mnist_images.flatten().reshape(60000,784)
 mnist_test_images = mnist_test_images.flatten().reshape(10000,784)
 
+mnist_images = mnist_images / 255
+mnist_test_images = mnist_test_images / 255
+
 print(mnist_images.shape)
 print(mnist_labels.shape)
 
@@ -21,6 +24,7 @@ mnist_images_pca = pca.fit(mnist_images).transform(mnist_images)
 mnist_test_images_pca = pca.transform(mnist_test_images)
 
 print(mnist_images_pca.shape)
+print('explained variance ratio: %s' % str(pca.explained_variance_ratio_))
 
 from sklearn.linear_model import LogisticRegression
 
