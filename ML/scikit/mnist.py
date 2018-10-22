@@ -12,8 +12,11 @@ print(mnist_test_images.shape)
 mnist_images = mnist_images.flatten().reshape(60000,784)
 mnist_test_images = mnist_test_images.flatten().reshape(10000,784)
 
+mnist_images = mnist_images / 255
+mnist_test_images = mnist_test_images / 255
+
 print(mnist_images.shape)
-print(mnist_labels.shape)
+print(mnist_test_images.shape)
 
 plt.figure(figsize=(20,4))
 for index, (image, label) in enumerate(zip(mnist_images[0:5], mnist_labels[0:5])):
@@ -23,6 +26,7 @@ for index, (image, label) in enumerate(zip(mnist_images[0:5], mnist_labels[0:5])
 plt.show()
 
 from sklearn.linear_model import LogisticRegression
+from sklearn import metrics
 
 logisticRegr = LogisticRegression(solver='lbfgs', multi_class='auto', verbose=1, max_iter=100)
 logisticRegr.fit(mnist_images, mnist_labels)
@@ -33,6 +37,15 @@ logisticRegr.fit(mnist_images, mnist_labels)
 predictions = logisticRegr.predict(mnist_test_images)
 score = logisticRegr.score(mnist_test_images,mnist_test_labels)
 print(score)
+
+# Display metrics
+# Precision measures the impact of false positives: TP/(TP+FP)
+# Recall measures the impact of false negatives : TP/(TP+FN)
+# F1 is the weighted average of precision and recall: (2*Recall*Precision)/(Recall+Precision)
+print(metrics.classification_report(mnist_test_labels, predictions))
+
+# Display confusion matrix
+print(metrics.confusion_matrix(mnist_test_labels, predictions))
 
 index = 0
 misclassifiedIndexes = []
