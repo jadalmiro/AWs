@@ -1,6 +1,4 @@
-import numpy as np
 import tensorflow as tf
-import matplotlib.pyplot as plt
 
 train, test = tf.keras.datasets.mnist.load_data()
 mnist_images, mnist_labels = train
@@ -19,7 +17,7 @@ print(mnist_images.shape)
 print(mnist_labels.shape)
 
 from sklearn.decomposition import PCA
-pca = PCA(n_components=16)
+pca = PCA(n_components=10)
 mnist_images_pca = pca.fit(mnist_images).transform(mnist_images)
 mnist_test_images_pca = pca.transform(mnist_test_images)
 
