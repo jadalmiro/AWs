@@ -30,3 +30,6 @@ print(metrics.classification_report(expected, predicted))
 
 # Display confusion matrix
 print(metrics.confusion_matrix(expected, predicted))
+
+# Display feature importance
+print(clf.feature_importances_)
