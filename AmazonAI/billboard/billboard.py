@@ -20,10 +20,6 @@ translated_text = tr.translateText(translate, text, language, 'es')
 print("Spanish: " +  translated_text)
 po.speak(polly, translated_text, voice='Enrique')
 
-translated_text = tr.translateText(translate, text, language, 'pt')
-print("Portuguese: " +  translated_text)
-po.speak(polly, translated_text, voice='Cristiano')
-
 translated_text = tr.translateText(translate, text, language, 'fr')
 print("French: " + translated_text)
 po.speak(polly, translated_text, voice='Mathieu')
@@ -31,3 +27,8 @@ po.speak(polly, translated_text, voice='Mathieu')
 translated_text = tr.translateText(translate, text, language, 'de')
 print("German: " +  translated_text)
 po.speak(polly, translated_text, voice='Hans')
+
+translated_text = tr.translateText(translate, text, language, 'ru')
+print("Russian: " +  translated_text)
+po.speak(polly, translated_text, voice='Maxim')
+
