@@ -4,9 +4,9 @@ import TranslateApi as tr
 import PollyApi as po
 
 rekognition = re.connect()
-comprehend = co.connect()
-translate = tr.connect()
-polly = po.connect()
+comprehend  = co.connect()
+translate   = tr.connect()
+polly       = po.connect()
 
 text = re.detectText(rekognition, 'jsimon-public-us', 'billboard.jpg')
 print("Detected text: " + text)
@@ -32,3 +32,6 @@ translated_text = tr.translateText(translate, text, language, 'ru')
 print("Russian: " +  translated_text)
 po.speak(polly, translated_text, voice='Maxim')
 
+translated_text = tr.translateText(translate, text, language, 'ja')
+print("Japanese: " +  translated_text)
+po.speak(polly, translated_text, voice='Takumi')

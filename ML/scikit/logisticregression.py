@@ -13,7 +13,7 @@ print(dataset.target.shape)
 print(dataset.target[:10])
 
 # Fit a logistic regression model to the data
-model = LogisticRegression()
+model = LogisticRegression(solver='liblinear', multi_class='auto')
 model.fit(dataset.data, dataset.target)
 
 # Save model for future use
