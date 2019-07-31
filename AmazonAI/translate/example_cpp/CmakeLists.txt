@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.2)
+project(translate_examples)
+set (CMAKE_CXX_STANDARD 11)
+
+# Locate the aws sdk for c++ package.
+find_package(AWSSDK REQUIRED COMPONENTS translate)
+
+# Link to shared libraries.
+add_definitions(-DUSE_IMPORT_EXPORT)
+
+# The executables to build.
+set(EXAMPLES "")
+list(APPEND EXAMPLES "translate_text")
+list(APPEND EXAMPLES "translate_text_file")
+
+# The executables to build
+foreach(EXAMPLE IN LISTS EXAMPLES)
+  add_executable(${EXAMPLE} ${EXAMPLE}.cpp)
+  target_link_libraries(${EXAMPLE} ${AWSSDK_LINK_LIBRARIES})
+endforeach()
